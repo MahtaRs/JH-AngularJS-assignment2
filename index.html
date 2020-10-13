@@ -23,30 +23,30 @@
     </style>
   </head>
 <body ng-app="myapp">
-  <div class="container" ng-controller="maincontroller">
+  <div class="container">
   <h1>Shopping List Check Off</h1>
 
   <div class="row">
 
     <!-- To Buy List -->
-    <div class="col-md-6">
+    <div class="col-md-6" ng-controller="ToBuyController as ItemAdd">
      <h2>To Buy:</h2>
      <ul>
-       <li ng-repeat="item in to_buy_array">
+       <li ng-repeat="item in ItemAdd.to_buy_array">
          {{$index + 1}}. Buy {{item.quantity}} {{item.name}}
-         <button class="btn btn-default" ng-click="buyitem($index)"><span class="glyphicon glyphicon-ok"></span>Bought</button>
+         <button class="btn btn-default" ng-click="ItemAdd.buyitem($index)"><span class="glyphicon glyphicon-ok"></span>Bought</button>
        </li>
      </ul>
-     <div class="emptyMessage" ng-if="to_buy_array.length === 0">Everything is bought!</div>
+     <div class="emptyMessage" ng-if="ItemAdd.to_buy_array.length === 0">Everything is bought!</div>
     </div>
 
     <!-- Already Bought List -->
-    <div class="col-md-6">
-     <h2 ng-if="bought_items.length != 0">Already Bought:</h2>
+    <div class="col-md-6" ng-controller="AlreadyBoughtController as ItemShow">
+     <h2 ng-if="ItemShow.bought_items.length != 0">Already Bought:</h2>
      <ul>
-       <li ng-repeat="bitem in bought_items">{{$index + 1}}.Bought {{bitem.quantity}} {{bitem.name}}</li>
+       <li ng-repeat="bitem in ItemShow.bought_items">{{$index + 1}}.Bought {{bitem.quantity}} {{bitem.name}}</li>
      </ul>
-     <div class="emptyMessage" ng-show="bought_items.length == 0">Nothing bought yet.</div>
+     <div class="emptyMessage" ng-show="ItemShow.bought_items.length == 0">Nothing bought yet.</div>
     </div>
   </div>
 </div>
