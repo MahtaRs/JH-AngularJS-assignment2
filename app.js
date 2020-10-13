@@ -2,29 +2,32 @@
   "use strict";
   angular.module("myapp" , [])
   .controller("maincontroller" , doit);
-  function doit($scope){
-    $scope.string;
-    $scope.update_val = function (){
-        $scope.myarray = $scope.string.split(",");
-        $scope.result_ar = []
-        $scope.result = "Please enter data first";
-        for (var a in $scope.myarray) {
-          $scope.myarray[a] = $scope.myarray[a].trim()
-          if($scope.myarray[a] != ""){
-            $scope.result_ar.push($scope.myarray[a])
-            //$scope.result.push(a.trim())
-          }
-        }
-        //$scope.result = $scope.result_ar.toString();
-        if($scope.result_ar.length == 0){
-          $scope.result = "Please enter data first";
-        }
-        else if($scope.result_ar.length <= 3){
-          $scope.result = "Enjoy!";
-        }
-        else if($scope.result_ar.length > 3){
-          $scope.result = "Too much!";
-        }
+  var tobuy = [
+    {
+      name: "cookies", quantity: 10
+    },
+    {
+      name: "oreos", quantity: 8
+    },
+    {
+      name: "marshmello", quantity: 5
+    },
+    {
+      name: "icecreames", quantity: 3
+    },
+    {
+      name: "milkbottles", quantity: 12
     }
+  ];
+  function doit ($scope){
+    $scope.to_buy_array = tobuy;
+    $scope.bought_items = [];
+    console.log($scope.to_buy_array);
+    $scope.buyitem = function (index){
+      $scope.bought_items.push($scope.to_buy_array[index]);
+      $scope.to_buy_array.splice(index, 1);
+      cosole.log($scope.bought_items);
+
+    };
   }
 })();

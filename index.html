@@ -22,8 +22,8 @@
       }
     </style>
   </head>
-<body>
-  <div class="container">
+<body ng-app="myapp">
+  <div class="container" ng-controller="maincontroller">
   <h1>Shopping List Check Off</h1>
 
   <div class="row">
@@ -32,22 +32,25 @@
     <div class="col-md-6">
      <h2>To Buy:</h2>
      <ul>
-       <li>Buy 10 cookies <button class="btn btn-default"><span class="glyphicon glyphicon-ok"></span> Bought</button></li>
-       <li>Buy 10 cookies <button class="btn btn-default"><span class="glyphicon glyphicon-ok"></span> Bought</button></li>
+       <li ng-repeat="item in to_buy_array">
+         {{$index + 1}}. Buy {{item.quantity}} {{item.name}}
+         <button class="btn btn-default" ng-click="buyitem($index)"><span class="glyphicon glyphicon-ok"></span>Bought</button>
+       </li>
      </ul>
-     <div class="emptyMessage">Everything is bought!</div>
+     <div class="emptyMessage" ng-if="to_buy_array.length === 0">Everything is bought!</div>
     </div>
 
     <!-- Already Bought List -->
     <div class="col-md-6">
-     <h2>Already Bought:</h2>
+     <h2 ng-if="bought_items.length != 0">Already Bought:</h2>
      <ul>
-       <li>Bought 10 cookies</li>
+       <li ng-repeat="bitem in bought_items">{{$index + 1}}.Bought {{bitem.quantity}} {{bitem.name}}</li>
      </ul>
-     <div class="emptyMessage">Nothing bought yet.</div>
+     <div class="emptyMessage" ng-show="bought_items.length == 0">Nothing bought yet.</div>
     </div>
   </div>
 </div>
-
+  <script src="angular.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
