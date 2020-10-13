@@ -42,7 +42,7 @@
 
     <!-- Already Bought List -->
     <div class="col-md-6" ng-controller="AlreadyBoughtController as ItemShow">
-     <h2 ng-if="ItemShow.bought_items.length != 0">Already Bought:</h2>
+     <h2>Already Bought:</h2>
      <ul>
        <li ng-repeat="bitem in ItemShow.bought_items">{{$index + 1}}.Bought {{bitem.quantity}} {{bitem.name}}</li>
      </ul>
